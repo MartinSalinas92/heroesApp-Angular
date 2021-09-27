@@ -1,0 +1,98 @@
+
+<h1>
+  <!--SI heroe existe se va agregar el nombre si no nada-->
+  {{ (heroe.id)? 'Editar': 'Nuevo '}}
+  heroe
+  <small>{{heroe.superhero}}</small>
+</h1>
+
+<div fxLayout="row" fxLayoutGap="40px">
+  <div fxFlex="50" fxLayout="column">
+    <div fxLayout="row" fxLayoutGap="20px">
+
+          <mat-form-field fxFlex="100">
+
+            <mat-label> Super Hero</mat-label>
+            <input matInput
+                  type="text"
+                  [(ngModel)]="heroe.superhero"
+                  required />
+
+          </mat-form-field>
+          <mat-form-field fxFlex="100">
+
+            <mat-label> Alter_ego</mat-label>
+            <input matInput
+                  type="text"
+                  [(ngModel)]="heroe.alter_ego"
+                  required />
+
+          </mat-form-field>
+
+  </div>
+      <mat-form-field >
+
+        <mat-label> Primera Aparicion</mat-label>
+        <input matInput
+              type="text"
+              [(ngModel)]="heroe.first_appearance"
+              required />
+
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label> Personajes</mat-label>
+        <input matInput
+              type="text"
+              [(ngModel)]="heroe.characters"
+              required />
+
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label> Creador</mat-label>
+        <mat-select required [(ngModel)]="heroe.publisher">
+          <mat-option *ngFor="let item of  publishers"
+              [value]="item.id">
+
+              {{item.desc}}
+
+          </mat-option>
+
+        </mat-select>
+
+
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label> Foto URl</mat-label>
+        <input matInput
+              type="url"
+              class="img"
+              [(ngModel)]="heroe.alt_img"
+              required />
+
+      </mat-form-field>
+
+      <div fxLayout>
+
+        <button mat-raised-button color="primary" (click)="guardar()">
+          <mat-icon>edit</mat-icon>
+
+              {{ (heroe.id)? 'Modificar': 'Crear'}}
+
+        </button>
+        <span class="spacer"></span>
+
+        <button mat-raised-button color="warn" (click)="Eliminar()">
+            <mat-icon>delete</mat-icon>
+            Eliminar
+        </button>
+
+      </div>
+
+  </div>
+
+
+  <div fxFlex="50">
+      <img [src]= heroe|rutaHeroes>
+  </div>
+
+</div>
